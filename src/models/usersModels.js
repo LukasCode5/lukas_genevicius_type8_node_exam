@@ -59,8 +59,43 @@ async function addToAccountsDb(userId, groupId) {
   }
 }
 
+async function getAccountsAndGroupsDb() {
+  // console.log('getAccountsAndGroupsDb model ran');
+  const sql = `SELECT accounts.user_id, groups.id AS group_id , groups.name FROM accounts 
+  LEFT JOIN groups 
+  ON accounts.group_id = groups.id;`;
+  return executeDb(sql);
+}
+
+async function getBillsOfGroupDB(groupId) {
+  console.log('getBillsOfGroupDB model ran');
+  const sql = 'SELECT * FROM bills';
+  return executeDb(sql, [groupId]);
+}
+
+async function postBillDb(billObj) {
+  console.log('postBillDb model ran');
+  const { group_id, amount, description } = billObj;
+
+  const sqlCheckGroup = 'SELECT * FROM groups WHERE id = ? ';
+  const checkGroupResult = await executeDb(sqlCheckGroup, [group_id]);
+  if (checkGroupResult.length === 0) {
+    return { success: false, message: 'Group not found' };
+  }
+
+  const sqlInserBill = `INSERT INTO bills(group_id, amount, description)
+VALUES(?,?,?)`;
+  const insertBillResult = await executeDb(sqlInserBill, [group_id, amount, description]);
+  if (insertBillResult.length === 1);
+
+  return { success: true, result: checkGroupResult };
+}
+
 module.exports = {
   registerUserDb,
   findUserByEmailDb,
-  addtoAccountsDb: addToAccountsDb,
+  addToAccountsDb,
+  getAccountsAndGroupsDb,
+  getBillsOfGroupDB,
+  postBillDb,
 };

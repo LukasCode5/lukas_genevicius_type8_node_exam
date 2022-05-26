@@ -49,6 +49,26 @@ async function validateLoginUser(req, res, next) {
   }
 }
 
+async function validateBill(req, res, next) {
+  const schema = Joi.object({
+    token: Joi.string().required(),
+    group_id: Joi.number().required(),
+    amount: Joi.number().required(),
+    description: Joi.string().trim().min(5).required(),
+  });
+  try {
+    await schema.validateAsync(req.body, { abortEarly: false });
+    next();
+  } catch (error) {
+    console.log('schema.validateAsync error ===', error);
+    const formatedError = error.details.map((errorObj) => ({
+      message: errorObj.message,
+      field: errorObj.path[0],
+    }));
+    res.status(400).json(formatedError);
+  }
+}
+
 async function validateToken(req, res, next) {
   const tokenFromHeaders = req.headers.authorization?.split(' ')[1];
 
@@ -111,4 +131,5 @@ module.exports = {
   validateLoginUser,
   validateToken,
   validateTokenPost,
+  validateBill,
 };

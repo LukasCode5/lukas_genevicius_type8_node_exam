@@ -22,8 +22,25 @@ POST http://127.0.0.1:3000/api/accounts
 Content-Type: application/json
 
 {
-"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTY1MzU3MjkwNiwiZXhwIjoxNjUzNTc2NTA2fQ.N-_k-F8mCsAbOrtZYoqnr9oO-3ah6iE1q2fptxSe4hg",
- "group_id":3
+"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTY1MzU3NDE4MiwiZXhwIjoxNjUzNTc3NzgyfQ.1MCTtNK9i-j2GwAgD1uDFirvaLAmwLNo6qjqoWnx5TQ",
+ "group_id":6
+}
+
+###
+GET http://127.0.0.1:3000/api/accounts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTY1MzU3MzI0OSwiZXhwIjoxNjUzNTc2ODQ5fQ.s3_R39NYdnQw2wFB553QL8r5KycX6gQycQMNPPijCr4
+###
+GET http://127.0.0.1:3000/api/bills/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTY1MzU4NDc3NSwiZXhwIjoxNjUzNTg4Mzc1fQ.cdTUAl4lMPEpEAbbr-CHND7WRwU-0UI354Mt4Zc0848
+###
+POST  http://127.0.0.1:3000/api/bills/
+Content-Type: application/json
+
+{
+"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTY1MzU5MTE0NCwiZXhwIjoxNjUzNTk0NzQ0fQ.ExmUIA943VMr7JeWRVea8eoh5Dhlb5ubRhj2UvyGyf0",
+"group_id":3,
+"amount":900,
+"description":"Additional expenses"
 }
 
 ###
