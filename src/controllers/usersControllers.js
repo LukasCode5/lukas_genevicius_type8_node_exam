@@ -1,7 +1,8 @@
+/* eslint-disable camelcase */
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { jwtSecret } = require('../config');
-const { registerUserDb, findUserByEmailDb } = require('../models/usersModels');
+const { registerUserDb, findUserByEmailDb, addtoAccountsDb } = require('../models/usersModels');
 
 async function registerUser(req, res) {
   // console.log('registerUser controller ran');
@@ -57,7 +58,32 @@ async function loginUser(req, res) {
   }
 }
 
+async function addToAccounts(req, res) {
+  console.log('addtoAccounts controller ran');
+  const { userId, group_id } = req.body;
+
+  try {
+    const addToAccountsResult = await addtoAccountsDb(userId, group_id);
+    // console.log('addToAccountsResult ===', addToAccountsResult);
+    if (!addToAccountsResult.success && addToAccountsResult.message === 'group not found') {
+      res.status(400).json('Group not found');
+      return;
+    }
+
+    if (!addToAccountsResult.success && addToAccountsResult.message === 'duplicate entry') {
+      res.status(400).json('User is already in this group');
+      return;
+    }
+
+    res.status(201).json({ success: true, message: 'Group successfully added' });
+  } catch (error) {
+    console.log('error in addToAccounts ===', error);
+    res.sendStatus(500);
+  }
+}
+
 module.exports = {
   registerUser,
   loginUser,
+  addToAccounts,
 };

@@ -49,8 +49,66 @@ async function validateLoginUser(req, res, next) {
   }
 }
 
+async function validateToken(req, res, next) {
+  const tokenFromHeaders = req.headers.authorization?.split(' ')[1];
+
+  if (!tokenFromHeaders) {
+    res.status(401).json({
+      success: false,
+      error: 'no token found',
+    });
+    return;
+  }
+
+  try {
+    const tokenPayload = jwt.verify(tokenFromHeaders, jwtSecret);
+    const { userId } = tokenPayload;
+
+    req.body.userId = userId;
+
+    next();
+  } catch (error) {
+    console.log('error in validateToken ===', error);
+    res.status(403).json({
+      success: false,
+      error: 'invalid token',
+    });
+  }
+}
+
+async function validateTokenPost(req, res, next) {
+  const tokenFromHeaders = req.body.token;
+
+  if (!tokenFromHeaders) {
+    res.status(401).json({
+      success: false,
+      error: 'no token found',
+    });
+    return;
+  }
+
+  try {
+    const tokenPayload = jwt.verify(tokenFromHeaders, jwtSecret);
+    // console.log('tokenPayload in post ===', tokenPayload);
+    const { userId } = tokenPayload;
+    // console.log('userId in post ===', userId);
+
+    req.body.userId = userId;
+
+    next();
+  } catch (error) {
+    // console.log('error in validateToken ===', error);
+    res.status(403).json({
+      success: false,
+      error: 'invalid token',
+    });
+  }
+}
+
 module.exports = {
   showBody,
   validateUser,
   validateLoginUser,
+  validateToken,
+  validateTokenPost,
 };

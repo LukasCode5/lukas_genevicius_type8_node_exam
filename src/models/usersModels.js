@@ -1,5 +1,5 @@
 const mysql = require('mysql2/promise');
-const { dbConfig } = require('../config');
+const { dbConfig, jwtSecret } = require('../config');
 
 async function executeDb(sql, dataToDbArray = []) {
   let conn;
@@ -28,7 +28,39 @@ async function findUserByEmailDb(userEmail) {
   return findResult[0];
 }
 
+async function addToAccountsDb(userId, groupId) {
+  console.log('addToAccountsDb model ran');
+  //  console.log('groupId ===', groupId);
+  // console.log('userId ===', userId);
+  try {
+    const sqlCheckIfGroupExists = `SELECT * FROM groups 
+        WHERE id = ?`;
+    const checkGroupResult = await executeDb(sqlCheckIfGroupExists, [groupId]);
+    //   console.log('checkGroupResult ===', checkGroupResult.length);
+    if (checkGroupResult.length === 0) {
+      return { success: false, message: 'group not found' };
+    }
+
+    const sqlCheckForDuplicate = `SELECT * FROM accounts 
+          WHERE user_id = ? AND group_id = ?`;
+    const checkDuplicateResult = await executeDb(sqlCheckForDuplicate, [userId, groupId]);
+    if (checkDuplicateResult.length !== 0) {
+      return { success: false, message: 'duplicate entry' };
+    }
+
+    const sqlInsert = `INSERT INTO accounts(group_id, user_id)
+        VALUES(?,?)`;
+    const insertAccountResult = await executeDb(sqlInsert, [groupId, userId]);
+    //  console.log('insertAccountResult ===', insertAccountResult);
+    return { success: true, result: insertAccountResult };
+  } catch (error) {
+    console.log('error in addToAccountsDb ===', error);
+    throw error;
+  }
+}
+
 module.exports = {
   registerUserDb,
   findUserByEmailDb,
+  addtoAccountsDb: addToAccountsDb,
 };

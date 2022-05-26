@@ -13,8 +13,17 @@ POST  http://127.0.0.1:3000/api/users/login
 Content-Type: application/json
 
 {
-    "email":"mindaugas@gamil.com",
+    "email":"karolis@gamil.com",
     "password":"secret123"
+}
+
+###
+POST http://127.0.0.1:3000/api/accounts
+Content-Type: application/json
+
+{
+"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTY1MzU3MjkwNiwiZXhwIjoxNjUzNTc2NTA2fQ.N-_k-F8mCsAbOrtZYoqnr9oO-3ah6iE1q2fptxSe4hg",
+ "group_id":3
 }
 
 ###
