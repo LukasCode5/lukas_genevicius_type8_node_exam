@@ -44,6 +44,7 @@ async function loginUser(req, res) {
 
     if (!jwtSecret) {
       res.sendStatus(500);
+      return;
     }
 
     const payload = { userId: foundUserResult.id };
