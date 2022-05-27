@@ -23,9 +23,14 @@ async function registerUserDb(userObj) {
 
 async function findUserByEmailDb(userEmail) {
   // console.log('findUserByEmailDb model ran');
-  const sql = 'SELECT * FROM users WHERE email = ?';
-  const findResult = await executeDb(sql, [userEmail]);
-  return findResult[0];
+  try {
+    const sql = 'SELECT * FROM users WHERE email = ?';
+    const findResult = await executeDb(sql, [userEmail]);
+    return findResult[0];
+  } catch (error) {
+    console.log('error in findUserByEmailDb', error);
+    throw error;
+  }
 }
 
 async function addToAccountsDb(userId, groupId) {
@@ -38,7 +43,7 @@ async function addToAccountsDb(userId, groupId) {
     const checkGroupResult = await executeDb(sqlCheckIfGroupExists, [groupId]);
     //   console.log('checkGroupResult ===', checkGroupResult.length);
     if (checkGroupResult.length === 0) {
-      return { success: false, message: 'group not found' };
+      return { success: false, message: 'Group not found' };
     }
 
     const sqlCheckForDuplicate = `SELECT * FROM accounts 
@@ -59,36 +64,73 @@ async function addToAccountsDb(userId, groupId) {
   }
 }
 
-async function getAccountsAndGroupsDb() {
+async function getAccountsAndGroupsDb(userId) {
   // console.log('getAccountsAndGroupsDb model ran');
-  const sql = `SELECT accounts.user_id, groups.id AS group_id , groups.name FROM accounts 
+  console.log('userId ===', userId);
+  try {
+    const sql = `SELECT accounts.user_id, groups.id AS group_id , groups.name FROM accounts
   LEFT JOIN groups 
-  ON accounts.group_id = groups.id;`;
-  return executeDb(sql);
+  ON accounts.group_id = groups.id`;
+    const allAccounts = await executeDb(sql);
+    const userAccounts = allAccounts.filter((accountObj) => accountObj.user_id === userId);
+    return userAccounts;
+  } catch (error) {
+    console.log('error in getAccountsAndGroupsDb', error);
+    throw error;
+  }
 }
 
 async function getBillsOfGroupDB(groupId) {
   console.log('getBillsOfGroupDB model ran');
-  const sql = 'SELECT * FROM bills';
-  return executeDb(sql, [groupId]);
+  try {
+    const sqlCheckGroup = 'SELECT * FROM groups WHERE id = ? ';
+    const checkGroupResult = await executeDb(sqlCheckGroup, [groupId]);
+    if (checkGroupResult.length === 0) {
+      return { success: false, message: 'Group not found' };
+    }
+
+    const sqlGetUserBills = 'SELECT * FROM bills WHERE group_id = ?';
+    const getUserBillResult = await executeDb(sqlGetUserBills, [groupId]);
+    if (getUserBillResult.length === 0) {
+      return { success: false, message: 'This group has no bills' };
+    }
+    return getUserBillResult;
+  } catch (error) {
+    console.log('error in getBillsOfGroupDB', error);
+    throw error;
+  }
 }
 
 async function postBillDb(billObj) {
   console.log('postBillDb model ran');
   const { group_id, amount, description } = billObj;
 
-  const sqlCheckGroup = 'SELECT * FROM groups WHERE id = ? ';
-  const checkGroupResult = await executeDb(sqlCheckGroup, [group_id]);
-  if (checkGroupResult.length === 0) {
-    return { success: false, message: 'Group not found' };
-  }
+  try {
+    const sqlCheckGroup = 'SELECT * FROM groups WHERE id = ? ';
+    const checkGroupResult = await executeDb(sqlCheckGroup, [group_id]);
+    if (checkGroupResult.length === 0) {
+      return { success: false, message: 'Group not found' };
+    }
 
-  const sqlInserBill = `INSERT INTO bills(group_id, amount, description)
+    const sqlInserBill = `INSERT INTO bills(group_id, amount, description)
 VALUES(?,?,?)`;
-  const insertBillResult = await executeDb(sqlInserBill, [group_id, amount, description]);
-  if (insertBillResult.length === 1);
+    const insertBillResult = await executeDb(sqlInserBill, [group_id, amount, description]);
+    return { success: true, result: insertBillResult };
+  } catch (error) {
+    console.log('error in postBillDb', error);
+    throw error;
+  }
+}
 
-  return { success: true, result: checkGroupResult };
+async function getGroupsDb() {
+  console.log('getGroupsDb model ran');
+  const sql = 'SELECT * FROM groups';
+  return executeDb(sql);
+}
+
+async function postGroupDb(groupName) {
+  const sql = 'INSERT INTO groups(name) VALUES(?)';
+  return executeDb(sql, [groupName]);
 }
 
 module.exports = {
@@ -98,4 +140,6 @@ module.exports = {
   getAccountsAndGroupsDb,
   getBillsOfGroupDB,
   postBillDb,
+  getGroupsDb,
+  postGroupDb,
 };
