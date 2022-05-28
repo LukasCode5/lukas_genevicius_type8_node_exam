@@ -11,7 +11,7 @@ function showBody(req, res, next) {
 
 async function validateUser(req, res, next) {
   const schema = Joi.object({
-    full_name: Joi.string().trim().required(),
+    full_name: Joi.string().trim().min(3).required(),
     // eslint-disable-next-line newline-per-chained-call
     email: Joi.string().trim().email().lowercase().required(),
     // eslint-disable-next-line newline-per-chained-call
@@ -32,6 +32,7 @@ async function validateUser(req, res, next) {
 
 async function validateLoginUser(req, res, next) {
   const schema = Joi.object({
+    // eslint-disable-next-line newline-per-chained-call
     email: Joi.string().trim().email().lowercase().required(),
     // eslint-disable-next-line newline-per-chained-call
     password: Joi.string().trim().min(5).max(15).required(),

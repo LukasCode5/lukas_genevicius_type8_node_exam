@@ -119,6 +119,7 @@ async function getBillsOfGroup(req, res) {
       return;
     }
     if (
+      // eslint-disable-next-line operator-linebreak
       !getBillsOfGroupResult.success &&
       getBillsOfGroupResult.message === 'This group has no bills'
     ) {

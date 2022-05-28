@@ -1,5 +1,5 @@
 const mysql = require('mysql2/promise');
-const { dbConfig, jwtSecret } = require('../config');
+const { dbConfig } = require('../config');
 
 async function executeDb(sql, dataToDbArray = []) {
   let conn;
@@ -103,10 +103,12 @@ async function getBillsOfGroupDB(groupId) {
 
 async function postBillDb(billObj) {
   console.log('postBillDb model ran');
+  // eslint-disable-next-line camelcase
   const { group_id, amount, description } = billObj;
 
   try {
     const sqlCheckGroup = 'SELECT * FROM groups WHERE id = ? ';
+    // eslint-disable-next-line camelcase
     const checkGroupResult = await executeDb(sqlCheckGroup, [group_id]);
     if (checkGroupResult.length === 0) {
       return { success: false, message: 'Group not found' };
@@ -114,6 +116,7 @@ async function postBillDb(billObj) {
 
     const sqlInserBill = `INSERT INTO bills(group_id, amount, description)
 VALUES(?,?,?)`;
+    // eslint-disable-next-line camelcase
     const insertBillResult = await executeDb(sqlInserBill, [group_id, amount, description]);
     return { success: true, result: insertBillResult };
   } catch (error) {
