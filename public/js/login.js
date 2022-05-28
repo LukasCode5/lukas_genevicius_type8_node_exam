@@ -35,6 +35,7 @@ formEl.addEventListener('submit', async (event) => {
     return;
   }
   handleSuccess('Login successful');
+  localStorage.setItem('userToken', loginResult.token);
   setTimeout(() => {
     window.location.replace('groups.html');
   }, 1000);

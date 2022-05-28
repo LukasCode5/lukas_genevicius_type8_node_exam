@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/bills.css" />
+    <script type="module" src="./js/bills.js" defer></script>
+    <title>Bills</title>
+  </head>
+  <body>
+    <div class="container">
+      <section class="hero">
+        <section class="logo">
+          <div class="logo-img">
+            <img src="./img/google_logo.jpg" alt="google logo" />
+          </div>
+          <h1>Split Bill</h1>
+          <p>Best in marker</p>
+        </section>
+        <form class="login_form">
+          <h3>Add bill</h3>
+          <label for="amount">Amount:</label>
+          <input name="amount" type="number" />
+          <p class="error-msg"></p>
+          <label for="description">Description:</label>
+          <input name="description" type="text" />
+          <p class="error-msg"></p>
+          <button type="submit">Add</button>
+        </form>
+      </section>
+      <footer>&copy; Copyright 2022, Google. All rights reserved</footer>
+    </div>
+  </body>
+</html>

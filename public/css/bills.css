@@ -5,7 +5,7 @@ body{
 }
 
 .container{
-    max-width: 750px;
+    max-width: 1600px;
     margin: 0 auto;
     background-color: white;
     padding: 0 50px 10px 50px;
@@ -74,4 +74,3 @@ button{
     max-width: 15%;
 
 }
-

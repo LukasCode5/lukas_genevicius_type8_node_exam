@@ -63,7 +63,7 @@ async function loginUser(req, res) {
     res.json({ success: true, token });
   } catch (error) {
     console.log('error in loginUser ===', error);
-    res.sendStatus(500);
+    res.status(500).json({ success: false, message: 'Something went wrong' });
   }
 }
 
@@ -87,7 +87,7 @@ async function addToAccounts(req, res) {
     res.status(201).json({ success: true, message: 'Group successfully added' });
   } catch (error) {
     console.log('error in addToAccounts ===', error);
-    res.sendStatus(500);
+    res.status(500).json({ success: false, message: 'Something went wrong' });
   }
 }
 
@@ -101,9 +101,10 @@ async function getAccountsAndGroups(req, res) {
       res.json({ success: false, message: 'This user has no accounts' });
       return;
     }
-    res.json(getAccountsResult);
+    res.json({ success: true, result: getAccountsResult });
   } catch (error) {
     console.log('error in getAccountsAndGroups ===', error);
+    res.status(500).json({ success: false, message: 'Something went wrong' });
   }
 }
 
@@ -129,7 +130,7 @@ async function getBillsOfGroup(req, res) {
     res.json(getBillsOfGroupResult);
   } catch (error) {
     console.log('error in getBillsOfGroup', error);
-    res.sendStatus(500);
+    res.status(500).json({ success: false, message: 'Something went wrong' });
   }
 }
 
@@ -145,7 +146,7 @@ async function postBill(req, res) {
     res.status(201).json({ success: true, message: 'Bill successfully added' });
   } catch (error) {
     console.log('error in postBill', error);
-    res.sendStatus(500);
+    res.status(500).json({ success: false, message: 'Something went wrong' });
   }
 }
 
@@ -153,10 +154,10 @@ async function getGroups(req, res) {
   console.log('getGroups controller ran');
   try {
     const getGroupsResult = await getGroupsDb();
-    res.json(getGroupsResult);
+    res.json({ success: true, result: getGroupsResult });
   } catch (error) {
     console.log('error in getGroups', error);
-    res.sendStatus(500);
+    res.status(500).json({ success: false, message: 'Something went wrong' });
   }
 }
 
@@ -172,7 +173,7 @@ async function postGroup(req, res) {
     res.sendStatus(400);
   } catch (error) {
     console.log('error postGroup', error);
-    res.sendStatus(500);
+    res.status(500).json({ success: false, message: 'Something went wrong' });
   }
 }
 

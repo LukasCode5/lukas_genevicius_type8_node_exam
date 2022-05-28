@@ -5,21 +5,19 @@ body{
 }
 
 .container{
-    max-width: 40%;
+    max-width: 750px;
     margin: 0 auto;
     background-color: white;
+    padding: 0 50px 10px 50px;
 }
 
 .hero{
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     justify-content: center;
     margin: 0 auto;
     max-width: 100%;
-    padding: 50px;
-    /* background-color: rgb(228, 242, 255); */
-    height: 98vh;
+    min-height: 920px;
 }
 
 .logo{
