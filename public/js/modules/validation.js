@@ -22,6 +22,16 @@ export function checkInput(valueToCheck, field, rulesArr) {
         return;
       }
     }
+    if (rule === 'email') {
+      if (valueToCheck.split('@').length === 1) {
+        addError('Email must contain @', field);
+        return;
+      }
+      if (valueToCheck.split('@')[1].split('.').length === 1) {
+        addError('Email must have a valid end', field);
+        return;
+      }
+    }
     if (rule === 'positive') {
       if (valueToCheck < 0) {
         addError('must be positive', field);

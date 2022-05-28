@@ -30,7 +30,7 @@ async function registerUser(req, res) {
       res.status(400).json({ success: false, message: 'User already exists' });
       return;
     }
-    res.sendStatus(500);
+    res.status(500).json({ success: false, message: 'Something went wrong' });
   }
 }
 
@@ -43,17 +43,17 @@ async function loginUser(req, res) {
     // console.log('foundUserResult ===', foundUserResult);
 
     if (!foundUserResult) {
-      res.status(400).json({ success: false, message: 'email or password not found (email)' });
+      res.status(400).json({ success: false, message: ' Incorrect email or password (email)' });
       return;
     }
 
     if (!bcrypt.compareSync(logUser.password, foundUserResult.password)) {
-      res.status(400).json({ success: false, message: 'email or password not found (password)' });
+      res.status(400).json({ success: false, message: 'Incorrect email or password (password)' });
       return;
     }
 
     if (!jwtSecret) {
-      res.sendStatus(500);
+      res.status(500).json({ success: false, message: 'Something went wrong' });
       return;
     }
 
