@@ -127,7 +127,7 @@ async function getBillsOfGroup(req, res) {
       res.json({ success: false, message: 'This group has no bills' });
       return;
     }
-    res.json(getBillsOfGroupResult);
+    res.json({ success: true, result: getBillsOfGroupResult });
   } catch (error) {
     console.log('error in getBillsOfGroup', error);
     res.status(500).json({ success: false, message: 'Something went wrong' });

@@ -1,14 +1,14 @@
 import { getFetch, getFetchToken, postFetchToken } from './modules/fetch.js';
 
+const userToken = localStorage.getItem('userToken');
+// eslint-disable-next-line no-unused-expressions
+userToken ? '' : window.location.replace('login.html');
+
 const cardContainerEl = document.querySelector('.card-container');
 const errorCardsEl = document.querySelector('.error-msg');
 const errorSelectionEl = document.querySelector('.error-selection');
 const selectGroupsEl = document.querySelector('.select');
 const formEl = document.querySelector('.group_form');
-
-const userToken = localStorage.getItem('userToken');
-// eslint-disable-next-line no-unused-expressions
-userToken ? '' : window.location.replace('login.html');
 
 // eslint-disable-next-line no-use-before-define
 showGroups('accounts', userToken, cardContainerEl, errorCardsEl);

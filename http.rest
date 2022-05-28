@@ -32,7 +32,7 @@ Content-Type: application/json
 GET http://127.0.0.1:3000/api/accounts
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsImlhdCI6MTY1Mzc0Mjg3MywiZXhwIjoxNjUzNzQ2NDczfQ.xdJCzdRYQQ8pLVAnDLTWqEASibT4-S8QBlrLOJL0vwg
 ###
-GET http://127.0.0.1:3000/api/bills/3
+GET http://127.0.0.1:3000/api/bills/1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE2LCJpYXQiOjE2NTM2NDI4NDUsImV4cCI6MTY1MzY0NjQ0NX0.3YRc57LlxeO-Y_vbGc6kbOuciz7csO37LWsvenEqe28
 ###
 POST  http://127.0.0.1:3000/api/bills/
