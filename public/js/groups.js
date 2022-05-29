@@ -30,7 +30,7 @@ formEl.addEventListener('submit', async (event) => {
     group_id: formEl.elements.groups.value.trim(),
   };
   const postGroupSelection = await postFetchToken('accounts', groupsSelectionObj);
-  console.log('postGroupSelection ===', postGroupSelection);
+  // console.log('postGroupSelection ===', postGroupSelection);
   if (postGroupSelection.error) {
     window.location.replace('login.html');
     return;
@@ -40,7 +40,7 @@ formEl.addEventListener('submit', async (event) => {
     errorSelectionEl.textContent = postGroupSelection.message;
     return;
   }
-
+  errorSelectionEl.textContent = '';
   // eslint-disable-next-line no-use-before-define
   showGroups('accounts', userToken, cardContainerEl, errorCardsEl);
 });
