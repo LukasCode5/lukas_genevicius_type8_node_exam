@@ -11,12 +11,19 @@ const groupName = localStorage.getItem('groupName');
 const formEl = document.querySelector('.bill_form');
 const groupNamesEl = document.querySelector('.group-name');
 const tbodyEl = document.querySelector('.bill-table-body');
+const navButtonEl = document.querySelector('.back-groups-btn');
+
 const errorMsgElementsArr = document.querySelectorAll('.errorMsgElementsArr');
 const errroEl = document.querySelector('.err');
 
 console.log('groupId ===', groupId);
 console.log('groupName ===', groupName);
 
+navButtonEl.addEventListener('click', (event) => {
+  window.location.replace('groups.html');
+});
+
+// eslint-disable-next-line no-use-before-define
 renderPage(`bills/${groupId}`, userToken, groupName, groupNamesEl);
 
 formEl.addEventListener('submit', async (event) => {
@@ -29,6 +36,7 @@ formEl.addEventListener('submit', async (event) => {
   };
   // console.log('errorsArr ===', errorsArr);
   // console.log('billObj ===', billObj);
+  // eslint-disable-next-line no-use-before-define
   clearErrors();
 
   checkInput(billObj.amount, 'amount', ['required', 'positive']);
@@ -42,6 +50,7 @@ formEl.addEventListener('submit', async (event) => {
   const billsResult = await postFetchToken('bills', billObj);
   console.log('billsResult ===', billsResult);
   if (Array.isArray(billsResult)) {
+    // eslint-disable-next-line no-use-before-define
     handleError(billsResult);
     return;
   }
@@ -50,12 +59,14 @@ formEl.addEventListener('submit', async (event) => {
     return;
   }
   if (!billsResult.success) {
+    // eslint-disable-next-line no-use-before-define
     handleError(billsResult.message);
     return;
   }
   formEl.reset();
   const getBills = await getFetchToken(`bills/${groupId}`, userToken);
   console.log('getBills ===', getBills);
+  // eslint-disable-next-line no-use-before-define
   renderBillRows(getBills.result, tbodyEl);
 });
 
@@ -69,9 +80,11 @@ async function renderPage(endpoint, token, groupsName, groupNameEl) {
     return;
   }
   if (!billsResult.success) {
+    // eslint-disable-next-line no-use-before-define
     handleError(billsResult.message);
     return;
   }
+  // eslint-disable-next-line no-use-before-define
   renderBillRows(billsResult.result, tbodyEl);
 }
 
@@ -112,14 +125,8 @@ function handleError(msg) {
 function clearErrors() {
   clearErrorsArr();
   errorMsgElementsArr.forEach((htmlElement) => {
+    // eslint-disable-next-line no-param-reassign
     htmlElement.textContent = '';
     htmlElement.previousElementSibling.classList.remove('invalid-input');
   });
-}
-
-function handleSuccess(msg) {
-  successEl.textContent = '';
-  if (typeof msg === 'string') {
-    successEl.textContent = msg;
-  }
 }

@@ -38,7 +38,7 @@ body{
     justify-content: center;
 }
 
-.logo h1{
+.logo h2{
     color: rgb(51, 51, 51);
     font-size: 30px;
     margin-bottom: 7px;
@@ -96,4 +96,11 @@ button{
 .card p{
     margin-top: -10px;
     color: gray;
+}
+.cards h1{
+    font-size: 30px;
+}
+
+select option{
+    font-size: 17px;
 }

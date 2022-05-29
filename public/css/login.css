@@ -34,9 +34,9 @@ body{
     justify-content: center;
 }
 
-.logo h1{
+.logo h2{
     color: rgb(51, 51, 51);
-    font-size: 30px;
+    font-size: 25px;
     margin-bottom: 7px;
 }
 
@@ -45,8 +45,8 @@ body{
     color: rgb(95, 95, 95);
 }
 
-.hero form h3{
-    font-size: 25px;
+.hero form h1{
+    font-size: 30px;
 }
 
 input{
