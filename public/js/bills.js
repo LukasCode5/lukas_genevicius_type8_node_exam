@@ -19,7 +19,7 @@ const errroEl = document.querySelector('.err');
 console.log('groupId ===', groupId);
 console.log('groupName ===', groupName);
 
-navButtonEl.addEventListener('click', (event) => {
+navButtonEl.addEventListener('click', () => {
   window.location.replace('groups.html');
 });
 
@@ -89,6 +89,9 @@ async function renderPage(endpoint, token, groupsName, groupNameEl) {
 }
 
 function renderBillRows(dataArr, destination) {
+  // eslint-disable-next-line no-param-reassign
+  destination.innerHTML = '';
+
   dataArr.forEach((billObj) => {
     const tableRowEl = document.createElement('tr');
 

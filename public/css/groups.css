@@ -104,3 +104,8 @@ button{
 select option{
     font-size: 17px;
 }
+
+.error-msg{
+    font-size: 20px;
+    font-weight: bold;
+}
