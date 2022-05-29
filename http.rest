@@ -1,0 +1,62 @@
+
+POST  http://127.0.0.1:3000/api/users/register
+Content-Type: application/json
+
+{
+    "full_name":"Juste Jusla",
+    "email":"juste@gamil.com",
+    "password":"secret123"
+}
+
+###
+
+POST  http://127.0.0.1:3000/api/users/login
+Content-Type: application/json
+
+{
+    "email":"migle@gamil.com",
+    "password":"secret123"
+}
+
+# visu users password: secret123
+###
+POST http://127.0.0.1:3000/api/accounts
+Content-Type: application/json
+
+{
+"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE2LCJpYXQiOjE2NTM2NDI4NDUsImV4cCI6MTY1MzY0NjQ0NX0.3YRc57LlxeO-Y_vbGc6kbOuciz7csO37LWsvenEqe28",
+ "group_id":7
+}
+
+###
+GET http://127.0.0.1:3000/api/accounts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsImlhdCI6MTY1Mzc0Mjg3MywiZXhwIjoxNjUzNzQ2NDczfQ.xdJCzdRYQQ8pLVAnDLTWqEASibT4-S8QBlrLOJL0vwg
+###
+GET http://127.0.0.1:3000/api/bills/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE2LCJpYXQiOjE2NTM2NDI4NDUsImV4cCI6MTY1MzY0NjQ0NX0.3YRc57LlxeO-Y_vbGc6kbOuciz7csO37LWsvenEqe28
+###
+POST  http://127.0.0.1:3000/api/bills/
+Content-Type: application/json
+
+{
+"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE2LCJpYXQiOjE2NTM2NDI4NDUsImV4cCI6MTY1MzY0NjQ0NX0.3YRc57LlxeO-Y_vbGc6kbOuciz7csO37LWsvenEqe28",
+"group_id":4,
+"amount":250,
+"description":"Food cost"
+}
+
+###
+
+# Extra routes
+
+GET http://127.0.0.1:3000/api/groups
+###
+
+POST  http://127.0.0.1:3000/api/groups
+Content-Type: application/json
+
+{
+"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImlhdCI6MTY1MzY0MTU1MiwiZXhwIjoxNjUzNjQ1MTUyfQ.KFnBAMLqlX9tZfchpnxM95ID6PdI_ZLplTCyO4fdRu4",
+"name":"Trip to the New World"
+}
+###

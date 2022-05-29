@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/register.css" />
+    <script type="module" src="./js/register.js" defer></script>
+    <title>Register</title>
+  </head>
+  <body>
+    <div class="container">
+      <section class="hero">
+        <section class="logo">
+          <div class="logo-img">
+            <img src="./img/google_logo.jpg" alt="google logo" />
+          </div>
+          <h2>Split Bill</h2>
+          <p>Best in marker</p>
+        </section>
+        <form class="register_form">
+          <h1>Register</h1>
+          <h3 class="success-msg"></h3>
+          <h3 class="err error-msg"></h3>
+          <label for="full_name">Full Name</label>
+          <input name="full_name" type="text" />
+          <p class="error-msg"></p>
+          <label for="email">Email</label>
+          <input name="email" type="email" />
+          <p class="error-msg"></p>
+          <label for="password">Password</label>
+          <input name="password" type="password" />
+          <p class="error-msg"></p>
+          <label for="repeat_password">Repeat Password</label>
+          <input name="repeat_password" type="password" />
+          <p class="error-msg"></p>
+          <button type="submit">Register</button>
+          <a href="login.html">Or perhaps, just login</a>
+        </form>
+      </section>
+      <footer>&copy; Copyright 2022, Google. All rights reserved</footer>
+    </div>
+  </body>
+</html>

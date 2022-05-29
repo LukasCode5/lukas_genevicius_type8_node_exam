@@ -3,6 +3,9 @@ const morgan = require('morgan');
 const cors = require('cors');
 
 const { PORT } = require('./config');
+const usersRoutes = require('./routes/usersRoutes');
+// eslint-disable-next-line no-unused-vars
+const { showBody } = require('./middleWare');
 
 const app = express();
 
@@ -10,6 +13,10 @@ const app = express();
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(cors());
+// app.use(showBody);
+
+// Routes
+app.use('/api', usersRoutes);
 
 // 404 route
 app.all('*', (req, res) => {

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/login.css" />
+    <script type="module" src="./js/login.js" defer></script>
+    <title>Login</title>
+  </head>
+  <body>
+    <div class="container">
+      <section class="hero">
+        <section class="logo">
+          <div class="logo-img">
+            <img src="./img/google_logo.jpg" alt="google logo" />
+          </div>
+          <h2>Split Bill</h2>
+          <p>Best in marker</p>
+        </section>
+        <form class="login_form">
+          <h1>Login</h1>
+          <h3 class="success-msg"></h3>
+          <h3 class="err error-msg"></h3>
+          <label for="email">Email</label>
+          <input name="email" type="email" />
+          <p class="error-msg"></p>
+          <label for="password">Password</label>
+          <input name="password" type="password" />
+          <p class="error-msg"></p>
+          <button type="submit">Login</button>
+          <a href="register.html">Don't have an account? Register</a>
+        </form>
+      </section>
+      <footer>&copy; Copyright 2022, Google. All rights reserved</footer>
+    </div>
+  </body>
+</html>

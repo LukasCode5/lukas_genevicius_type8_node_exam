@@ -1,0 +1,78 @@
+@import 'common.css';
+
+body{
+    background-image: url("../img/background.jpg");
+}
+
+.container{
+    border-radius: 15px;
+    max-width: 750px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 0 50px 10px 50px;
+}
+
+.hero{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 100%;
+    min-height: 920px;
+}
+
+.logo{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo .logo-img{
+    display: flex;
+    justify-content: center;
+}
+
+.logo h2{
+    color: rgb(51, 51, 51);
+    font-size: 25px;
+    margin-bottom: 7px;
+}
+
+.logo p{
+    text-transform: uppercase;
+    color: rgb(95, 95, 95);
+}
+
+.hero form h1{
+    font-size: 30px;
+}
+
+input{
+    display: block;
+    width: 100%;
+    height: 40px;
+    border: 2px solid lightgray;
+}
+
+label{
+    font-weight: bold;
+    font-size: 17px;
+}
+
+button{
+    display: block;
+    background: transparent;
+    border: 1px solid black;
+    font-weight: bold;
+    padding: 9px 17px;
+    margin-bottom: 10px;
+}
+
+.logo .logo-img img{
+    object-fit: contain;
+    max-width: 15%;
+
+}
+

@@ -14,6 +14,6 @@
     "rules": {       
         "linebreak-style":"off",
         "no-console":"off",
-        "import/extensions":"never"
+        "import/extensions":"off"
     }
 }
