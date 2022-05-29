@@ -40,7 +40,7 @@ formEl.addEventListener('submit', async (event) => {
     errorSelectionEl.textContent = postGroupSelection.message;
     return;
   }
-
+  errorSelectionEl.textContent = '';
   // eslint-disable-next-line no-use-before-define
   showGroups('accounts', userToken, cardContainerEl, errorCardsEl);
 });
