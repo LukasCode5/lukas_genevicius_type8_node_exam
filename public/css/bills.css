@@ -120,3 +120,8 @@ button{
     width: 40%;
     margin-bottom: 70px;
 }
+
+.error-msg-h3{
+    color: tomato;
+    margin-top: 0;
+}

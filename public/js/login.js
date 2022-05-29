@@ -9,7 +9,7 @@ const errorMsgElementsArr = document.querySelectorAll('.error-msg');
 
 formEl.addEventListener('submit', async (event) => {
   event.preventDefault();
-  console.log('login form works');
+  // console.log('login form works');
 
   const loginUser = {
     email: formEl.elements.email.value.trim(),

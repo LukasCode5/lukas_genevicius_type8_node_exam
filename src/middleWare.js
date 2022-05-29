@@ -122,7 +122,7 @@ async function validateToken(req, res, next) {
 
 async function validateTokenPost(req, res, next) {
   const tokenFromPost = req.body.token;
-
+  console.log('tokenFromPost ===', tokenFromPost);
   if (!tokenFromPost) {
     res.status(401).json({
       success: false,

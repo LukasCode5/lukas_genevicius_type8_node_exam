@@ -17,16 +17,30 @@ showGroupSelection('groups', selectGroupsEl, errorSelectionEl);
 
 formEl.addEventListener('submit', async (event) => {
   event.preventDefault();
+  // eslint-disable-next-line no-unused-expressions
+  if (!localStorage.getItem('userToken')) {
+    window.location.replace('login.html');
+    return;
+  }
+
+  const userTokeN = localStorage.getItem('userToken');
+
   const groupsSelectionObj = {
-    token: userToken,
+    token: userTokeN,
     group_id: formEl.elements.groups.value.trim(),
   };
   const postGroupSelection = await postFetchToken('accounts', groupsSelectionObj);
-  // console.log('postGroupSelection ===', postGroupSelection);
+  console.log('postGroupSelection ===', postGroupSelection);
+  if (postGroupSelection.error) {
+    window.location.replace('login.html');
+    return;
+  }
+
   if (!postGroupSelection.success) {
     errorSelectionEl.textContent = postGroupSelection.message;
     return;
   }
+
   // eslint-disable-next-line no-use-before-define
   showGroups('accounts', userToken, cardContainerEl, errorCardsEl);
 });

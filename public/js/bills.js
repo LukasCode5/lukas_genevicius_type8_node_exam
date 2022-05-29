@@ -13,7 +13,7 @@ const groupNamesEl = document.querySelector('.group-name');
 const tbodyEl = document.querySelector('.bill-table-body');
 const navButtonEl = document.querySelector('.back-groups-btn');
 
-const errorMsgElementsArr = document.querySelectorAll('.errorMsgElementsArr');
+const errorMsgElementsArr = document.querySelectorAll('.error-msg');
 const errroEl = document.querySelector('.err');
 
 // console.log('groupId ===', groupId);
@@ -28,8 +28,16 @@ renderPage(`bills/${groupId}`, userToken, groupName, groupNamesEl);
 
 formEl.addEventListener('submit', async (event) => {
   event.preventDefault();
+
+  if (!localStorage.getItem('userToken')) {
+    window.location.replace('login.html');
+    return;
+  }
+
+  const userTokeN = localStorage.getItem('userToken');
+
   const billObj = {
-    token: userToken,
+    token: userTokeN,
     group_id: groupId,
     amount: formEl.elements.amount.value.trim(),
     description: formEl.elements.description.value.trim(),
