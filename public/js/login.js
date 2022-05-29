@@ -16,24 +16,28 @@ formEl.addEventListener('submit', async (event) => {
     password: formEl.elements.password.value.trim(),
   };
   // console.log('loginUser  ===', loginUser);
+  // eslint-disable-next-line no-use-before-define
   clearErrors();
 
   checkInput(loginUser.email, 'email', ['required', 'minLength-3', 'email']);
   checkInput(loginUser.password, 'password', ['required', 'minLength-5', 'maxLength-15']);
 
-  console.log('errorsArr ===', errorsArr);
+  // console.log('errorsArr ===', errorsArr);
 
   if (errorsArr.length) {
+    // eslint-disable-next-line no-use-before-define
     handleError(errorsArr);
     return;
   }
 
   const loginResult = await postFetch('users/login', loginUser);
-  console.log('loginResult ===', loginResult);
+  // console.log('loginResult ===', loginResult);
   if (!loginResult.success) {
+    // eslint-disable-next-line no-use-before-define
     handleError(loginResult.message);
     return;
   }
+  // eslint-disable-next-line no-use-before-define
   handleSuccess('Login successful');
   localStorage.setItem('userToken', loginResult.token);
   setTimeout(() => {
@@ -59,6 +63,7 @@ function handleError(msg) {
 function clearErrors() {
   clearErrorsArr();
   errorMsgElementsArr.forEach((htmlElement) => {
+    // eslint-disable-next-line no-param-reassign
     htmlElement.textContent = '';
     htmlElement.previousElementSibling.classList.remove('invalid-input');
   });

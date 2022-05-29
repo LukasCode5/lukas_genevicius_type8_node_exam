@@ -68,7 +68,7 @@ async function loginUser(req, res) {
 }
 
 async function addToAccounts(req, res) {
-  console.log('addtoAccounts controller ran');
+  // console.log('addtoAccounts controller ran');
   const { userId, group_id } = req.body;
 
   try {
@@ -92,7 +92,7 @@ async function addToAccounts(req, res) {
 }
 
 async function getAccountsAndGroups(req, res) {
-  console.log('getAccountsAndGroups controller ran');
+  // console.log('getAccountsAndGroups controller ran');
   const { userId } = req.body;
   try {
     const getAccountsResult = await getAccountsAndGroupsDb(userId);
@@ -109,12 +109,12 @@ async function getAccountsAndGroups(req, res) {
 }
 
 async function getBillsOfGroup(req, res) {
-  console.log('getBillsOfGroup controller ran');
+  // console.log('getBillsOfGroup controller ran');
   const groupId = +req.params.group_id;
   // console.log('groupId ===', typeof groupId, groupId);
   try {
     const getBillsOfGroupResult = await getBillsOfGroupDB(groupId);
-    console.log('getBillsOfGroupResult ===', getBillsOfGroupResult);
+    //  console.log('getBillsOfGroupResult ===', getBillsOfGroupResult);
     if (!getBillsOfGroupResult.success && getBillsOfGroupResult.message === 'Group not found') {
       res.status(400).json({ success: false, message: 'Group not found' });
       return;
@@ -135,7 +135,7 @@ async function getBillsOfGroup(req, res) {
 }
 
 async function postBill(req, res) {
-  console.log('postBill controller ran');
+  // console.log('postBill controller ran');
   const newBill = req.body;
   try {
     const postBillResult = await postBillDb(newBill);
@@ -151,7 +151,7 @@ async function postBill(req, res) {
 }
 
 async function getGroups(req, res) {
-  console.log('getGroups controller ran');
+  // console.log('getGroups controller ran');
   try {
     const getGroupsResult = await getGroupsDb();
     res.json({ success: true, result: getGroupsResult });
@@ -162,7 +162,7 @@ async function getGroups(req, res) {
 }
 
 async function postGroup(req, res) {
-  console.log('postGroups controller ran');
+  // console.log('postGroups controller ran');
   const groupName = req.body.name;
   try {
     const postGroupResult = await postGroupDb(groupName);

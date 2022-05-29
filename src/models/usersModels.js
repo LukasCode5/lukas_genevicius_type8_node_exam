@@ -8,7 +8,7 @@ async function executeDb(sql, dataToDbArray = []) {
     const [result] = await conn.execute(sql, dataToDbArray);
     return result;
   } catch (error) {
-    console.log('error executeb', error);
+    console.log('error executeDb', error);
     throw error;
   } finally {
     conn?.end();
@@ -34,7 +34,7 @@ async function findUserByEmailDb(userEmail) {
 }
 
 async function addToAccountsDb(userId, groupId) {
-  console.log('addToAccountsDb model ran');
+  // console.log('addToAccountsDb model ran');
   //  console.log('groupId ===', groupId);
   // console.log('userId ===', userId);
   try {
@@ -66,7 +66,7 @@ async function addToAccountsDb(userId, groupId) {
 
 async function getAccountsAndGroupsDb(userId) {
   // console.log('getAccountsAndGroupsDb model ran');
-  console.log('userId ===', userId);
+  // console.log('userId ===', userId);
   try {
     const sql = `SELECT accounts.user_id, groups.id AS group_id , groups.name FROM accounts
   LEFT JOIN groups 
@@ -81,7 +81,7 @@ async function getAccountsAndGroupsDb(userId) {
 }
 
 async function getBillsOfGroupDB(groupId) {
-  console.log('getBillsOfGroupDB model ran');
+  //  console.log('getBillsOfGroupDB model ran');
   try {
     const sqlCheckGroup = 'SELECT * FROM groups WHERE id = ? ';
     const checkGroupResult = await executeDb(sqlCheckGroup, [groupId]);
@@ -102,7 +102,7 @@ async function getBillsOfGroupDB(groupId) {
 }
 
 async function postBillDb(billObj) {
-  console.log('postBillDb model ran');
+  // console.log('postBillDb model ran');
   // eslint-disable-next-line camelcase
   const { group_id, amount, description } = billObj;
 
@@ -126,7 +126,7 @@ VALUES(?,?,?)`;
 }
 
 async function getGroupsDb() {
-  console.log('getGroupsDb model ran');
+  // console.log('getGroupsDb model ran');
   const sql = 'SELECT * FROM groups';
   return executeDb(sql);
 }

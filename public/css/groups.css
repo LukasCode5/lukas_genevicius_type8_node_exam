@@ -23,6 +23,7 @@ body{
 
 .hero form{
     max-width: 30%;
+    margin-bottom: 70px;
 }
 
 .logo{
@@ -52,6 +53,7 @@ body{
 .hero form h3{
     font-size: 25px;
 }
+
 
 input,select{
     display: block;

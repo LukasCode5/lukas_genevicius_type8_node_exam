@@ -34,7 +34,7 @@ formEl.addEventListener('submit', async (event) => {
   if (errorsArr.length) {
     // eslint-disable-next-line no-use-before-define
     handleError(errorsArr);
-    console.log('errorsArr ===', errorsArr);
+    // console.log('errorsArr ===', errorsArr);
     return;
   }
 
@@ -46,13 +46,16 @@ formEl.addEventListener('submit', async (event) => {
 
   const registerResult = await postFetch('users/register', newUser);
   if (Array.isArray(registerResult)) {
+    // eslint-disable-next-line no-use-before-define
     handleError(registerResult);
     return;
   }
   if (!registerResult.success) {
+    // eslint-disable-next-line no-use-before-define
     handleError(registerResult.message);
     return;
   }
+  // eslint-disable-next-line no-use-before-define
   handleSuccess(registerResult.message);
   formEl.reset();
   setTimeout(() => {
@@ -78,6 +81,7 @@ function handleError(msg) {
 function clearErrors() {
   clearErrorsArr();
   errorMsgElementsArr.forEach((htmlElement) => {
+    // eslint-disable-next-line no-param-reassign
     htmlElement.textContent = '';
     htmlElement.previousElementSibling.classList.remove('invalid-input');
   });

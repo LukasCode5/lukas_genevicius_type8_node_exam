@@ -22,7 +22,7 @@ formEl.addEventListener('submit', async (event) => {
     group_id: formEl.elements.groups.value.trim(),
   };
   const postGroupSelection = await postFetchToken('accounts', groupsSelectionObj);
-  console.log('postGroupSelection ===', postGroupSelection);
+  // console.log('postGroupSelection ===', postGroupSelection);
   if (!postGroupSelection.success) {
     errorSelectionEl.textContent = postGroupSelection.message;
     return;
@@ -50,7 +50,7 @@ async function showGroups(endpoint, token, destination, errorElement) {
     const groupsSorted = groupsResult.result.sort(
       (groupObjA, groupObjB) => groupObjA.group_id - groupObjB.group_id
     );
-    console.log('groupsSorted ===', groupsSorted);
+    // console.log('groupsSorted ===', groupsSorted);
     // eslint-disable-next-line no-use-before-define
     renderGroupCards(groupsSorted, destination);
   } catch (error) {

@@ -60,6 +60,7 @@ justify-content: flex-start;
     font-size: 25px;
 }
 
+
 input{
     display: block;
     width: 100%;
@@ -117,4 +118,5 @@ button{
 
 .bill_form{
     width: 40%;
+    margin-bottom: 70px;
 }

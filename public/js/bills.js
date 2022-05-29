@@ -16,8 +16,8 @@ const navButtonEl = document.querySelector('.back-groups-btn');
 const errorMsgElementsArr = document.querySelectorAll('.errorMsgElementsArr');
 const errroEl = document.querySelector('.err');
 
-console.log('groupId ===', groupId);
-console.log('groupName ===', groupName);
+// console.log('groupId ===', groupId);
+// console.log('groupName ===', groupName);
 
 navButtonEl.addEventListener('click', () => {
   window.location.replace('groups.html');
@@ -48,7 +48,7 @@ formEl.addEventListener('submit', async (event) => {
     return;
   }
   const billsResult = await postFetchToken('bills', billObj);
-  console.log('billsResult ===', billsResult);
+  // console.log('billsResult ===', billsResult);
   if (Array.isArray(billsResult)) {
     // eslint-disable-next-line no-use-before-define
     handleError(billsResult);
@@ -65,7 +65,7 @@ formEl.addEventListener('submit', async (event) => {
   }
   formEl.reset();
   const getBills = await getFetchToken(`bills/${groupId}`, userToken);
-  console.log('getBills ===', getBills);
+  // console.log('getBills ===', getBills);
   // eslint-disable-next-line no-use-before-define
   renderBillRows(getBills.result, tbodyEl);
 });
@@ -74,7 +74,7 @@ async function renderPage(endpoint, token, groupsName, groupNameEl) {
   // eslint-disable-next-line no-param-reassign
   groupNameEl.textContent = groupsName;
   const billsResult = await getFetchToken(endpoint, token);
-  console.log('billsResult ===', billsResult);
+  // console.log('billsResult ===', billsResult);
   if (billsResult.error) {
     window.location.replace('login.html');
     return;
