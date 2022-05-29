@@ -43,12 +43,12 @@ async function loginUser(req, res) {
     // console.log('foundUserResult ===', foundUserResult);
 
     if (!foundUserResult) {
-      res.status(400).json({ success: false, message: ' Incorrect email or password (email)' });
+      res.status(400).json({ success: false, message: ' Incorrect email or password' });
       return;
     }
 
     if (!bcrypt.compareSync(logUser.password, foundUserResult.password)) {
-      res.status(400).json({ success: false, message: 'Incorrect email or password (password)' });
+      res.status(400).json({ success: false, message: 'Incorrect email or password' });
       return;
     }
 
